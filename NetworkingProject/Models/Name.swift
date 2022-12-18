@@ -12,4 +12,15 @@ struct Name: Decodable {
     let age: Int
     let count: Int
     let name: String
+    
+    var description: String {
+        """
+        age: \(age)
+        count: \(count)
+        name: \(name)
+        """
+    }
 }
+
+
+

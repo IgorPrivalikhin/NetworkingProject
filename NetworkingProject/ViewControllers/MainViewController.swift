@@ -9,33 +9,28 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let objectURL = "https://api.agify.io/?name=bella"
+    @IBOutlet var nameLabel: UILabel!
     
-    @IBAction func buttonTapped() {
-        fetchData()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getName()
     }
-}
+    
 
-// MARK: - Networking
-    extension MainViewController {
-       private func fetchData() {
-            guard let url = URL(string: objectURL) else { return }
-            
-            URLSession.shared.dataTask(with: url) { data, _, error in
-                guard let data else {
-                    print(error?.localizedDescription ?? "No error description")
-                    return
-                }
+    func getName() {
+        NetworkManager.shared.fetch(Name.self, from: objectURL) { [weak self] result in
+            switch result {
+            case .success(let name):
+                self?.nameLabel.text = name.description
+            case .failure(let error):
+                print(error)
                 
-                do {
-                    let object = try JSONDecoder().decode(Name.self, from: data)
-                    print(object)
-                    
-                } catch let error {
-                    print(error)
-                }
-            }.resume()
+            }
         }
     }
     
+}
 
+     
+     
+     

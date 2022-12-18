@@ -8,17 +8,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Start View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="NetworkingProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="StartViewController" customModule="NetworkingProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1w-kk-dnj">
-                                <rect key="frame" x="164" y="266" width="66" height="30"/>
+                                <rect key="frame" x="152" y="729" width="88" height="30"/>
                                 <color key="backgroundColor" red="0.11006849259138107" green="0.94512778520584106" blue="0.91691982746124268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="ABy-Ca-oHE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="press">
@@ -30,22 +33,58 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="buttonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="New-Nu-Pll"/>
+                                    <action selector="pressButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNb-6F-2LP"/>
+                                    <segue destination="cj0-ic-Vn6" kind="presentation" identifier="goToName" id="aGg-Yp-cLs"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="b1w-kk-dnj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="207" id="9yu-sk-Afw"/>
-                            <constraint firstItem="b1w-kk-dnj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="164" id="EVh-cr-KGz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b1w-kk-dnj" secondAttribute="trailing" constant="163" id="bjs-Xx-JiI"/>
+                            <constraint firstItem="b1w-kk-dnj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="152" id="PIK-Vk-LQp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="b1w-kk-dnj" secondAttribute="bottom" constant="59" id="YlH-uF-7ci"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b1w-kk-dnj" secondAttribute="trailing" constant="153" id="cjh-48-Fqr"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="4"/>
+            <point key="canvasLocation" x="135.1145038167939" y="3.5211267605633805"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="qgs-A0-sYF">
+            <objects>
+                <viewController id="cj0-ic-Vn6" customClass="MainViewController" customModule="NetworkingProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NJy-wC-r1d">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rly-Ry-MOF">
+                                <rect key="frame" x="106" y="130" width="180" height="201"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="RCF-Pb-cMD"/>
+                                    <constraint firstAttribute="height" constant="201" id="Thv-lG-9Cj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wNB-7P-X1w"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rly-Ry-MOF" firstAttribute="leading" secondItem="wNB-7P-X1w" secondAttribute="leading" constant="106" id="KnU-dd-cEX"/>
+                            <constraint firstItem="rly-Ry-MOF" firstAttribute="top" secondItem="wNB-7P-X1w" secondAttribute="top" constant="71" id="uOU-RY-w4N"/>
+                            <constraint firstItem="wNB-7P-X1w" firstAttribute="trailing" secondItem="rly-Ry-MOF" secondAttribute="trailing" constant="107" id="xUE-id-Uvr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="rly-Ry-MOF" id="DC5-cG-hLO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F8v-xA-Lxk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849.61832061068696" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
