@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import Alamofire
 
-
-let objectURL = "https://api.agify.io/?name=bella"
-
+enum Link: String {
+    case objectURL = "https://api.agify.io/?name=bella"
+}
 
     enum NetworkError: Error {
         case invalidURL
@@ -22,28 +23,22 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
-    func fetch<T: Decodable>(_ type: T.Type, from url: String, completion: @escaping(Result<T, NetworkError>)  -> Void) { 
-        guard let url = URL(string: url) else {
-            completion(.failure(.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                let type = try decoder.decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(type))
+    
+    
+    func fetchInfo( from url: String, completion: @escaping(Result<[Name], AFError>)  -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success( let data):
+                    let name = Name.getName(from: data)
+                    completion(.success(name))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            } catch {
-                completion(.failure(.decodingError))
             }
-        }.resume()
     }
 }
+        
+        
+
